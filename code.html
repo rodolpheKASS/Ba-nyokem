@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📅 Notre appel vidéo ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(145deg, #fce4ec, #f8bbd0);
+      padding: 20px;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 40px 35px;
+      border-radius: 50px;
+      box-shadow: 0 25px 50px rgba(214, 51, 108, 0.25);
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      border: 2px solid #ffffff80;
+      transition: 0.3s;
+    }
+
+    h1 {
+      color: #880e4f;
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .sous-titre {
+      color: #ad1457;
+      font-size: 16px;
+      margin-bottom: 30px;
+      opacity: 0.8;
+    }
+
+    .emoji-big {
+      font-size: 60px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-weight: 600;
+      color: #4a2c3a;
+      margin: 18px 0 6px 0;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    input[type="date"],
+    input[type="time"],
+    select {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 40px;
+      border: 2px solid #f48fb1;
+      background: white;
+      font-size: 16px;
+      color: #333;
+      outline: none;
+      transition: 0.3s;
+      font-family: inherit;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #d81b60;
+      box-shadow: 0 0 0 4px #f8bbd0;
+    }
+
+    .btn-valider {
+      background: linear-gradient(135deg, #d81b60, #ad1457);
+      color: white;
+      border: none;
+      padding: 16px 30px;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 50px;
+      width: 100%;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 20px rgba(216, 27, 96, 0.4);
+    }
+
+    .btn-valider:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 28px rgba(216, 27, 96, 0.6);
+    }
+
+    .btn-valider:active {
+      transform: scale(0.97);
+    }
+
+    #resultat {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 30px;
+      background: #fce4ec;
+      border-left: 8px solid #d81b60;
+      display: none;
+      animation: apparition 0.6s ease-out;
+    }
+
+    #resultat.affiche {
+      display: block;
+    }
+
+    @keyframes apparition {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #resultat .date-heure {
+      font-size: 22px;
+      font-weight: 700;
+      color: #880e4f;
+      background: white;
+      padding: 12px;
+      border-radius: 20px;
+      margin: 12px 0;
+    }
+
+    #resultat .message-joie {
+      font-size: 20px;
+      font-style: italic;
+      color: #4a2c3a;
+      padding: 10px;
+      line-height: 1.5;
+    }
+
+    #resultat .message-joie span {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-utilitaire {
+      background: white;
+      border: 2px solid #d81b60;
+      color: #d81b60;
+      padding: 10px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .btn-utilitaire:hover {
+      background: #d81b60;
+      color: white;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 13px;
+      color: #9c27b0;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <span class="emoji-big">💖</span>
+    <h1>On s'appelle ?</h1>
+    <p class="sous-titre">Choisis le moment parfait pour notre appel vidéo ✨</p>
+
+    <label for="datePicker">📆 Choisis le jour</label>
+    <input type="date" id="datePicker" min="2026-06-24">
+
+    <label for="timePicker">⏰ Choisis l'heure</label>
+    <input type="time" id="timePicker">
+
+    <button class="btn-valider" onclick="validerRendezVous()">
+      ✅ C'est validé!
+    </button>
+
+    <!-- Zone d'affichage du résultat -->
+    <div id="resultat">
+      <div class="date-heure" id="affichageDateHeure">📅 24 juin 2026 à 20h30</div>
+      <div class="message-joie" id="affichageMessage">
+        <span>🥰</span>
+        J'ai hâte de voir ton sourire à travers l'écran !
+      </div>
+      <div class="actions">
+        <button class="btn-utilitaire" onclick="copierRendezVous()">📋 Copier</button>
+        <button class="btn-utilitaire" onclick="envoyerParMail()">✉️ M'envoyer par mail</button>
+      </div>
+    </div>
+
+    <div class="footer"> C'est noté, je t'attends avec impatience </div>
+  </div>
+
+  <script>
+    // === MESSAGES DE JOIE (positifs, tendres, excités) ===
+    const messagesDeJoie = [{
+        emoji: "🥰",
+        texte: "J'ai hâte de voir ton sourire à travers l'écran !"
+      },
+      // { emoji: "😍", texte: "Mon cœur fait des bonds rien que d'y penser !" },
+      // { emoji: "✨", texte: "Ce sera le plus beau moment de ma journée, c'est promis." },
+      // { emoji: "🔥", texte: "Tu vas me faire fondre, je le sens !" },
+      {
+        emoji: "💫",
+        texte: "L'univers a choisi ce moment pour nous. C'est magique."
+      },
+      // { emoji: "🌸", texte: "J'ai déjà des papillons dans le ventre en imaginant ta voix." },
+      // { emoji: "💖", texte: "Peu importe l'heure, tant que c'est avec toi, c'est parfait." },
+      {
+        emoji: "🌟",
+        texte: "La star. Hâte de te voir !"
+      },
+      // { emoji: "🎉", texte: "Ça va être une fête, même à distance !" },
+      // { emoji: "☀️", texte: "Ce jour-là, même la météo sera amoureuse😂." },
+      // { emoji: "🌙", texte: "À cette heure, je serai déjà en train de rêver de toi." },
+      // { emoji: "💌", texte: "Ton appel est le seul rendez-vous qui compte à mes yeux." }
+    ];
+    // Met la date d'aujourd'hui par défaut dans le champ (pour éviter le vide)
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('datePicker').value = today;
+      // Met une heure par défaut (19h30)
+      document.getElementById('timePicker').value = "19:30";
+    });
+
+    function validerRendezVous() {
+      const date = document.getElementById('datePicker').value;
+      const time = document.getElementById('timePicker').value;
+      if (!date || !time) {
+        alert("Mon amour ❤️, il faut que tu choisisses une date ET une heure s'il-te-plaît !");
+        return;
+      }
+      // Formatage de la date pour l'affichage (ex: 24 juin 2026)
+      const optionsDate = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      const dateObj = new Date(date + 'T' + time);
+      const dateFormatee = dateObj.toLocaleDateString('fr-FR', optionsDate);
+      const heureFormatee = dateObj.toLocaleTimeString('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      // Sélection aléatoire d'un message de joie
+      const msg = messagesDeJoie[Math.floor(Math.random() * messagesDeJoie.length)];
+      // Injection dans le DOM
+      document.getElementById('affichageDateHeure').innerHTML = `📅 ${dateFormatee} à ${heureFormatee}`;
+      document.getElementById('affichageMessage').innerHTML = `<span>${msg.emoji}</span> ${msg.texte}`;
+      // Affiche la zone avec animation
+      const zone = document.getElementById('resultat');
+      zone.classList.remove('affiche');
+      // Petit trick pour relancer l'animation
+      void zone.offsetWidth;
+      zone.classList.add('affiche');
+      // Scroll vers le résultat
+      zone.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+    // === Fonction pour copier le rendez-vous ===
+    function copierRendezVous() {
+      const dateHeureTexte = document.getElementById('affichageDateHeure').innerText;
+      const messageTexte = document.getElementById('affichageMessage').innerText;
+      const texteComplet = `💕 Rendez-vous amoureux : ${dateHeureTexte}\n💬 ${messageTexte}`;
+      navigator.clipboard.writeText(texteComplet).then(() => {
+        alert("✅ C'est copié ! Tu peux maintenant me l'envoyer par message 💖");
+      }).catch(() => {
+        // Fallback si la copie ne fonctionne pas
+        alert("📋 Copie manuelle : sélectionne le texte ci-dessus.");
+      });
+    }
+    // === Fonction pour envoyer par mail (via le client par défaut) ===
+    function envoyerParMail() {
+      const dateHeureTexte = document.getElementById('affichageDateHeure').innerText;
+      const messageTexte = document.getElementById('affichageMessage').innerText;
+      const sujet = encodeURIComponent("📅 Notre appel vidéo ❤️");
+      const corps = encodeURIComponent(
+        `Coucou mon amour 💖\n\nVoici le moment que j'ai choisi pour notre appel :\n${dateHeureTexte}\n\nMon ressenti : ${messageTexte}\n\nJe t'aime, à très vite ! 🌹`
+      );
+      // === REMPLACE "tonemail@exemple.com" par ton vrai email ===
+      const tonEmail = "rodolphebanyokem@gmail.com"; // <-- MODIFIE ICI !
+      window.location.href = `mailto:${tonEmail}?subject=${sujet}&body=${corps}`;
+    }
+  </script>
+
+</body>
+
+</html>
